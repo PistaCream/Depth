@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,7 +27,7 @@ const val TIMER_DURATION = 10
 @Composable
 fun TimerScreen() {
     var startTimer by remember { mutableStateOf(false) }
-    var timerProgressSeconds by remember { mutableStateOf(0) }
+    var timerProgressSeconds by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(startTimer) {
         if (startTimer) {
