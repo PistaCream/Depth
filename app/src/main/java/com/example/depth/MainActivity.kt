@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import com.example.depth.data.DatabaseProvider
 import com.example.depth.presentation.AppNavigation
 import com.example.depth.presentation.history.HistoryViewModel
+import com.example.depth.presentation.home.HomeViewModel
 import com.example.depth.presentation.timer.TimerViewModel
 import com.example.depth.ui.theme.DepthTheme
 
@@ -16,11 +17,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         val dao = DatabaseProvider.provideDB(applicationContext).timeLogDao()
         val historyViewModel = HistoryViewModel(dao)
+        val homeViewModel = HomeViewModel(dao)
         val timerViewModel = TimerViewModel(dao)
 
         setContent {
             DepthTheme {
-                AppNavigation(historyViewModel = historyViewModel, timerViewModel = timerViewModel)
+                AppNavigation(historyViewModel = historyViewModel, homeViewModel = homeViewModel, timerViewModel = timerViewModel)
             }
         }
     }

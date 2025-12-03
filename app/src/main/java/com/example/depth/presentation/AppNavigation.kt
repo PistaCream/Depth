@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.depth.presentation.history.HistoryScreen
 import com.example.depth.presentation.history.HistoryViewModel
 import com.example.depth.presentation.home.HomeScreen
+import com.example.depth.presentation.home.HomeViewModel
 import com.example.depth.presentation.timer.TimerScreen
 import com.example.depth.presentation.timer.TimerViewModel
 
@@ -25,6 +26,7 @@ data class BottomNavItem(
 fun AppNavigation(
     navController: NavHostController = rememberNavController(),
     historyViewModel: HistoryViewModel,
+    homeViewModel: HomeViewModel,
     timerViewModel: TimerViewModel
 ) {
     val items = listOf(
@@ -69,7 +71,7 @@ fun AppNavigation(
 
 
             composable("main") {
-                HomeScreen()
+                HomeScreen(homeViewModel)
             }
 
             composable("timer") {
