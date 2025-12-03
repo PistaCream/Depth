@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.depth.presentation.history.HistoryScreen
+import com.example.depth.presentation.history.HistoryViewModel
 import com.example.depth.presentation.home.HomeScreen
 import com.example.depth.presentation.timer.TimerScreen
 
@@ -21,7 +22,8 @@ data class BottomNavItem(
 
 @Composable
 fun AppNavigation(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    historyViewModel: HistoryViewModel
 ) {
     val items = listOf(
         BottomNavItem("history", "History"),
@@ -60,8 +62,9 @@ fun AppNavigation(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("history") {
-                HistoryScreen()
+                HistoryScreen(historyViewModel)
             }
+
 
             composable("main") {
                 HomeScreen()
