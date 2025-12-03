@@ -30,7 +30,7 @@ import java.util.Timer
 import kotlin.concurrent.fixedRateTimer
 
 //TODO: duration should be configurable
-const val TIMER_DURATION_SECONDS = 10
+const val TIMER_DURATION_SECONDS = 25 * 60
 
 @Composable
 fun TimerScreen(timerViewModel: TimerViewModel) {

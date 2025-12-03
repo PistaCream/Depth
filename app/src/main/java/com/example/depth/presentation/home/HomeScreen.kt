@@ -9,11 +9,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: HomeViewModel) {
+    val totalMinutes = viewModel.totalMinutes.value
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
-        Text(text = "Home")
+        Text(text = "Congrats, you've focused for $totalMinutes minutes today!")
+        viewModel.getTotalMinutesToday()
     }
 }

@@ -12,4 +12,7 @@ interface TimeLogDao {
 
     @Query("SELECT * FROM TimeLog ORDER BY id DESC")
     suspend fun getAllLogs(): List<TimeLog>
+
+    @Query("SELECT SUM(minutes) FROM TimeLog WHERE date = :givenDate")
+    suspend fun getTotalMinutes(givenDate: String): Int?
 }
