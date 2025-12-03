@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class TimeLog(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val date: Long,
+    val date: String,
     val minutes: Int,
 )
