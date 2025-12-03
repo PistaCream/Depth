@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="MySplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/mysplash</item>
+        <item name="windowSplashScreenBackground">#999999</item>
+        <item name="postSplashScreenTheme">@style/Theme.Depth</item>
+        <item name="windowSplashScreenIconBackgroundColor">#000000</item>=
+    </style>
     <style name="Theme.Depth" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
