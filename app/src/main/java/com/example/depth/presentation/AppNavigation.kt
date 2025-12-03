@@ -14,6 +14,7 @@ import com.example.depth.presentation.history.HistoryScreen
 import com.example.depth.presentation.history.HistoryViewModel
 import com.example.depth.presentation.home.HomeScreen
 import com.example.depth.presentation.timer.TimerScreen
+import com.example.depth.presentation.timer.TimerViewModel
 
 data class BottomNavItem(
     val route: String,
@@ -23,7 +24,8 @@ data class BottomNavItem(
 @Composable
 fun AppNavigation(
     navController: NavHostController = rememberNavController(),
-    historyViewModel: HistoryViewModel
+    historyViewModel: HistoryViewModel,
+    timerViewModel: TimerViewModel
 ) {
     val items = listOf(
         BottomNavItem("history", "History"),
@@ -71,7 +73,7 @@ fun AppNavigation(
             }
 
             composable("timer") {
-                TimerScreen()
+                TimerScreen(timerViewModel)
             }
         }
     }

@@ -22,19 +22,24 @@ import androidx.compose.ui.unit.dp
 import kotlin.concurrent.fixedRateTimer
 
 //TODO: duration should be configurable
-const val TIMER_DURATION = 10
+const val TIMER_DURATION_SECONDS = 5
 
 @Composable
-fun TimerScreen() {
+fun TimerScreen(timerViewModel: TimerViewModel) {
     var startTimer by remember { mutableStateOf(false) }
     var timerProgressSeconds by remember { mutableIntStateOf(0) }
+
+    fun timerFinished() {
+        timerViewModel.logTime(TIMER_DURATION_SECONDS)
+    }
 
     LaunchedEffect(startTimer) {
         if (startTimer) {
             fixedRateTimer(period = 1000L) {
                 timerProgressSeconds++
-                if (timerProgressSeconds >= TIMER_DURATION) {
+                if (timerProgressSeconds >= TIMER_DURATION_SECONDS) {
                     cancel()
+                    timerFinished()
                 }
             }
         }
@@ -53,7 +58,7 @@ fun TimerScreen() {
     ) {
         Box(contentAlignment = Alignment.Center) {
             DeterminateCircularProgress(progress = timerProgressSeconds, modifier = Modifier.size(270.dp))
-            Text(text = getRemainingTime(TIMER_DURATION - timerProgressSeconds))
+            Text(text = getRemainingTime(TIMER_DURATION_SECONDS - timerProgressSeconds))
         }
         Button(onClick = { startTimer = true }) {
             Text("Start")
@@ -65,7 +70,7 @@ fun TimerScreen() {
 fun DeterminateCircularProgress(progress: Int, modifier: Modifier = Modifier) {
     CircularProgressIndicator(
         progress = {
-            progress.toFloat() / TIMER_DURATION.toFloat()
+            progress.toFloat() / TIMER_DURATION_SECONDS.toFloat()
         },
         modifier = modifier,
         color = Color.Blue,
