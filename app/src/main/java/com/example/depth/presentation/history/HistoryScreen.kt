@@ -10,11 +10,17 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun HistoryScreen(viewModel: HistoryViewModel) {
+    viewModel.getTotalMinutesAllDates()
+    val logs = viewModel.allLogs
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center) {
-        Text(text = "History")
-        viewModel.printAllLogs()
+        verticalArrangement = Arrangement.Top
+    ) {
+        Text("Testing")
+        for (log in logs) {
+            Text(text = "Date: ${log.date}, Total Minutes: ${log.total ?: 0}")
+        }
     }
 }

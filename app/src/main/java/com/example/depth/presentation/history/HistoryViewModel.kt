@@ -1,21 +1,18 @@
 package com.example.depth.presentation.history
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.depth.data.dao.TimeLogDao
-import com.example.depth.data.entity.TimeLog
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val timeLogDao: TimeLogDao) : ViewModel() {
+    private var _allLogs = mutableListOf<TimeLogDao.DateTotal>()
+    val allLogs: List<TimeLogDao.DateTotal> = _allLogs
 
-    fun printAllLogs() {
-        Log.d("HistoryViewModel", "Fetching all logs")
+    fun getTotalMinutesAllDates() {
         viewModelScope.launch {
-            val logs: List<TimeLog> = timeLogDao.getAllLogs()
-            logs.forEach { log ->
-                Log.d("HistoryViewModel", log.toString())
-            }
+            val logs = timeLogDao.getTotalMinutesAllDates()
+            _allLogs = logs.toMutableList()
         }
     }
 }
