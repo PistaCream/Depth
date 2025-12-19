@@ -14,6 +14,7 @@ import com.example.depth.presentation.history.HistoryScreen
 import com.example.depth.presentation.history.HistoryViewModel
 import com.example.depth.presentation.home.HomeScreen
 import com.example.depth.presentation.home.HomeViewModel
+import com.example.depth.presentation.settings.SettingsScreen
 import com.example.depth.presentation.timer.TimerScreen
 import com.example.depth.presentation.timer.TimerViewModel
 
@@ -32,7 +33,9 @@ fun AppNavigation(
     val items = listOf(
         BottomNavItem("history", "History"),
         BottomNavItem("main", "Home"),
-        BottomNavItem("timer", "Timer")
+        //TODO: Probably move timer into somewhere else
+        BottomNavItem("timer", "Timer"),
+        BottomNavItem("settings", "Settings")
     )
 
     Scaffold(
@@ -69,13 +72,16 @@ fun AppNavigation(
                 HistoryScreen(historyViewModel)
             }
 
-
             composable("main") {
                 HomeScreen(homeViewModel)
             }
 
             composable("timer") {
                 TimerScreen(timerViewModel)
+            }
+
+            composable("settings") {
+                SettingsScreen()
             }
         }
     }

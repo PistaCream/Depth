@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DepthTheme {
+
                 AppNavigation(historyViewModel = historyViewModel, homeViewModel = homeViewModel, timerViewModel = timerViewModel)
             }
         }
